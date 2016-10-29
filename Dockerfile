@@ -4,9 +4,10 @@ FROM node:6
 # Install Graphicsmagick from sid (package in jessie has bugs with PSD files)
 
 RUN echo "deb-src http://httpredir.debian.org/debian/ sid main contrib non-free" \
-  >> /etc/apt/sources.list.d/sources.list \
-  echo "deb http://ftp.debian.org/debian jessie-backports main" \
-  >> /etc/apt/sources.list.d/sources.list \
+    >> /etc/apt/sources.list.d/sources.list \
+  && echo "deb http://ftp.debian.org/debian jessie-backports main" \
+    >> /etc/apt/sources.list.d/sources.list \
+  && cat /etc/apt/sources.list.d/sources.list \
   && apt-get update \
   && apt-get install -y build-essential \
   && mkdir -p /tmp/gm-build \
